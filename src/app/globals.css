@@ -1,4 +1,39 @@
-/* src/app/globals.css */
+/* ========== GLOBAL RESET & THEME ========== */
+
+:root {
+  /* Colors */
+  --color-bg: #020617;
+  --color-bg-soft: #020617;
+  --color-surface: #020617;
+  --color-border-subtle: rgba(148, 163, 184, 0.32);
+
+  --color-text: #e5e7eb;
+  --color-text-muted: #9ca3af;
+  --color-accent: #6366f1;
+  --color-accent-soft: rgba(99, 102, 241, 0.16);
+
+  /* Typography */
+  --font-family-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --font-size-base: 16px;
+  --font-size-sm: 0.875rem;
+  --font-size-xs: 0.75rem;
+  --font-size-h1: 2.75rem;
+  --font-size-h2: 2rem;
+  --font-size-h3: 1.25rem;
+
+  /* Layout */
+  --radius-lg: 18px;
+  --radius-xl: 22px;
+  --shadow-soft: 0 20px 45px rgba(15, 23, 42, 0.7);
+  --shadow-sm: 0 10px 25px rgba(15, 23, 42, 0.5);
+
+  /* Animation */
+  --transition-fast: 150ms ease-out;
+  --transition-med: 220ms ease-out;
+}
+
+/* ----- Reset ----- */
 
 *,
 *::before,
@@ -14,5 +49,163 @@ body {
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-base);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* ----- Main shell ----- */
+
+.site-shell {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(99, 102, 241, 0.2), transparent 60%),
+    #020617;
+}
+
+.main-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3.5rem;
+}
+
+/* ----- Sections ----- */
+
+.section {
+  padding: 3.5rem 0;
+}
+
+.section-title {
+  font-size: var(--font-size-h2);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.75rem;
+}
+
+.section-subtitle {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  max-width: 640px;
+  margin-bottom: 2.25rem;
+}
+
+/* ----- Utilities ----- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(15, 23, 42, 0.9);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.35rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: rgba(15, 23, 42, 0.95);
+  color: var(--color-text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  gap: 0.4rem;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast),
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  border-color: #6366f1;
+  color: white;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+  border-color: rgba(165, 180, 252, 0.9);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #4338ca, #4f46e5);
+}
+
+/* ----- Card base ----- */
+
+.card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-subtle);
+  background:
+    radial-gradient(circle at top left, rgba(96, 165, 250, 0.16), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(129, 140, 248, 0.16), transparent 60%),
+    rgba(15, 23, 42, 0.98);
+  box-shadow: var(--shadow-soft);
+  padding: 1.65rem;
+  overflow: hidden;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(248, 250, 252, 0.04), transparent 60%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-med);
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+/* animation hook – keyframes defined in animations.css */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fade-in-up 0.7s var(--transition-med) forwards;
 }
