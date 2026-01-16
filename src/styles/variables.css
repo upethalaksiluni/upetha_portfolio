@@ -1,0 +1,26 @@
+﻿:root {
+  /* Colors */
+  --bg-color: #020617;
+  --bg-elevated: #020617;
+  --card-bg: #020617;
+  --border-subtle: rgba(148, 163, 184, 0.35);
+  --text-color: #e5e7eb;
+  --muted-text: #9ca3af;
+  --accent-color: #2563eb;
+  --accent-soft: rgba(37, 99, 235, 0.15);
+
+  /* Layout */
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.65);
+
+  /* Animation */
+  --transition-fast: 150ms ease-out;
+  --transition-medium: 220ms ease-out;
+
+  /* Typography */
+  --font-size-base: 16px;
+  --font-size-h1: 2.5rem;
+  --font-size-h2: 2rem;
+  --font-size-h3: 1.25rem;
+}
