@@ -1342,3 +1342,50 @@
 }
 
 
+.boot-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+      circle at top left,
+      rgba(34, 197, 94, 0.12),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(34, 197, 94, 0.16),
+      transparent 60%
+    ),
+    #020617;
+  color: #e5e7eb;
+  overflow: hidden; /* already there – keep it */
+}
+
+.boot-inner {
+  position: relative;
+  width: min(880px, 100% - 3rem);
+  max-height: calc(100vh - 48px);   /* 🔹 keep inside viewport */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;    /* spread content nicely */
+  border-radius: 18px;
+  border: 1px solid rgba(34, 197, 94, 0.5);
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.95),
+    rgba(15, 23, 42, 0.98)
+  );
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.9);
+  padding: 1.8rem 2.2rem 1.6rem;
+  overflow: hidden;
+}
+
+/* slightly shorter 3D area on smaller screens */
+@media (max-height: 800px) {
+  .boot-3d-wrapper {
+    height: 220px;
+  }
+}
