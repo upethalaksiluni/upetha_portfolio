@@ -1,17 +1,19 @@
-/* NAVBAR */
+/* NAVBAR – transparent / glassy over hero */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 40;
+
+  /* transparent – no solid gradient */
+  background: transparent;
+
+  /* light glass effect only, not a dark bar */
   backdrop-filter: blur(18px);
-  background: linear-gradient(
-    to bottom,
-    rgba(2, 6, 23, 0.98),
-    rgba(2, 6, 23, 0.86),
-    rgba(2, 6, 23, 0.8)
-  );
-  border-bottom: 1px solid rgba(30, 64, 175, 0.5);
+
+  /* very soft bottom border (optional) */
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
 }
+
 .navbar-inner {
   max-width: 1120px;
   margin: 0 auto;
@@ -21,32 +23,38 @@
   justify-content: space-between;
   gap: 1.25rem;
 }
+
 .navbar-brand {
   display: flex;
   flex-direction: column;
 }
+
 .navbar-title {
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+
 .navbar-subtitle {
   font-size: 0.78rem;
   color: var(--color-text-muted);
 }
+
 .nav-links {
   display: flex;
   flex-wrap: wrap;
   gap: 0.85rem;
   font-size: 0.85rem;
 }
+
 .nav-link {
   position: relative;
   padding-bottom: 0.1rem;
   color: var(--color-text-muted);
   transition: color var(--transition-fast);
 }
+
 .nav-link::after {
   content: "";
   position: absolute;
@@ -58,12 +66,15 @@
   background: var(--color-accent);
   transition: width var(--transition-fast);
 }
+
 .nav-link:hover {
   color: var(--color-text);
 }
+
 .nav-link:hover::after {
   width: 100%;
-} 
+}
+
 
 /* FOOTER */
 .footer {
@@ -1093,7 +1104,6 @@
   text-wrap: nowrap;
   color: var(--color-text-muted);
 
-  /* gradient border trick */
   background:
     linear-gradient(135deg, #020617, #020617) padding-box,
     linear-gradient(135deg, #4f46e5, #22c55e, #f97316) border-box;
@@ -1109,7 +1119,7 @@
     background 0.18s ease-out;
 }
 
-/* shimmer overlay */
+/* subtle shimmer */
 .section-tag-pill::before {
   content: "";
   position: absolute;
@@ -1124,31 +1134,10 @@
   opacity: 0;
 }
 
-/* hover interaction */
-.section-tag-pill:hover {
-  transform: translateY(-1px);
-  color: #e5e7eb;
-  box-shadow:
-    0 0 0 1px rgba(129, 140, 248, 0.7),
-    0 10px 26px rgba(15, 23, 42, 0.9);
-}
-
+/* hover interaction – framer-motion adds y/scale, CSS adds shimmer */
 .section-tag-pill:hover::before {
   opacity: 1;
-  animation: section-tag-shimmer 0.8s ease-out;
-}
-
-/* subtle, staggered idle glow on the three tags */
-.section-tags .section-tag-pill:nth-child(1) {
-  animation: section-tag-pulse 5.4s ease-in-out infinite;
-}
-.section-tags .section-tag-pill:nth-child(2) {
-  animation: section-tag-pulse 5.4s ease-in-out infinite;
-  animation-delay: 0.4s;
-}
-.section-tags .section-tag-pill:nth-child(3) {
-  animation: section-tag-pulse 5.4s ease-in-out infinite;
-  animation-delay: 0.8s;
+  animation: section-tag-shimmer 0.9s ease-out;
 }
 
 /* shimmer sweep */
@@ -1161,23 +1150,57 @@
   }
 }
 
-/* gentle glow pulse */
-@keyframes section-tag-pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 1px rgba(79, 70, 229, 0.55);
-  }
-  50% {
-    box-shadow:
-      0 0 0 1px rgba(34, 197, 94, 0.8),
-      0 0 22px rgba(34, 197, 94, 0.35);
-  }
-}
-
-/* responsive header */
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .section-header {
-    flex-direction: column;
     align-items: flex-start;
   }
 }
+
+
+/* ===== Cursor glow effect ===== */
+
+.cursor-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;      /* don't block clicks */
+  z-index: 5;                /* below navbar (40) & main content */
+}
+
+/* main content sits above the glow */
+.main-root {
+  position: relative;
+  z-index: 10;
+}
+
+.cursor-glow {
+  position: fixed;
+  width: 240px;
+  height: 240px;
+  margin-left: -120px;       /* center on cursor */
+  margin-top: -120px;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle,
+    rgba(56, 189, 248, 0.25),
+    rgba(56, 189, 248, 0)
+  );
+  mix-blend-mode: screen;
+  filter: blur(26px);
+  pointer-events: none;
+  transition:
+    opacity 220ms ease-out,
+    transform 80ms linear;
+}
+
+/* a bit softer on small screens */
+@media (max-width: 640px) {
+  .cursor-glow {
+    width: 180px;
+    height: 180px;
+    margin-left: -90px;
+    margin-top: -90px;
+    filter: blur(20px);
+  }
+}
+
+

@@ -2,13 +2,52 @@
 "use client";
 
 import React from "react";
-import { motion } from "motion/react";
+import { motion, type Variants } from "motion/react";
 
 type SectionHeaderProps = {
   eyebrow: string;
   title: string;
   subtitle: string;
   tags?: string[];
+};
+
+const headerVariants: Variants = {
+  hidden: { opacity: 0, y: 18 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: "easeOut",
+    },
+  },
+};
+
+const tagsContainer: Variants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.18,
+      duration: 0.45,
+      ease: "easeOut",
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const tagVariant: Variants = {
+  hidden: { opacity: 0, y: 8, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut",
+    },
+  },
 };
 
 const SectionHeader: React.FC<SectionHeaderProps> = ({
@@ -20,39 +59,21 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   return (
     <motion.header
       className="section-header"
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true, amount: 0.35 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      variants={headerVariants}
     >
       <div className="section-header-main">
-        <motion.span
-          className="badge"
-          initial={{ opacity: 0, y: 8 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.4, delay: 0.05, ease: "easeOut" }}
-        >
+        <motion.span className="badge" variants={tagVariant}>
           {eyebrow}
         </motion.span>
 
-        <motion.h2
-          className="section-title"
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-        >
+        <motion.h2 className="section-title" variants={tagVariant}>
           {title}
         </motion.h2>
 
-        <motion.p
-          className="section-subtitle"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.5, delay: 0.18, ease: "easeOut" }}
-        >
+        <motion.p className="section-subtitle" variants={tagVariant}>
           {subtitle}
         </motion.p>
       </div>
@@ -60,23 +81,21 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       {tags && tags.length > 0 && (
         <motion.div
           className="section-tags"
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.5, delay: 0.22, ease: "easeOut" }}
+          variants={tagsContainer}
+          aria-hidden="true"
         >
-          {tags.map((tag, index) => (
+          {tags.map((tag) => (
             <motion.span
               key={tag}
               className="section-tag-pill"
-              initial={{ opacity: 0, y: 6 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.35 }}
-              transition={{
-                duration: 0.4,
-                delay: 0.25 + index * 0.06,
-                ease: "easeOut",
+              variants={tagVariant}
+              whileHover={{
+                y: -2,
+                scale: 1.03,
+                boxShadow:
+                  "0 0 0 1px rgba(129,140,248,0.6), 0 18px 35px rgba(15,23,42,0.95)",
               }}
+              transition={{ type: "spring", stiffness: 220, damping: 18 }}
             >
               {tag}
             </motion.span>
