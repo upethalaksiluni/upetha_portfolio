@@ -99,6 +99,7 @@
 } 
 
 /* HERO */
+/* HERO */
 .hero-section {
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
@@ -179,7 +180,7 @@
   font-size: var(--font-size-h1);
   font-weight: 700;
   letter-spacing: 0.02em;
-  line-height: 1.18;           /* ⬅️ more vertical space */
+  line-height: 1.18;
   margin-bottom: 0.8rem;
 }
 
@@ -188,7 +189,7 @@
   font-size: 0.98rem;
   color: var(--color-text-muted);
   max-width: 640px;
-  line-height: 1.8;            /* ⬅️ bigger line spacing */
+  line-height: 1.8;
   margin-bottom: 1.9rem;
 }
 
@@ -246,6 +247,127 @@
   color: var(--color-text-muted);
 }
 
+/* ===== HERO LAYOUT WITH PROFILE PHOTO ===== */
+
+.hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.1fr);
+  gap: 2.4rem;
+  align-items: center;
+}
+
+/* left side: keep it column-based */
+.hero-main {
+  display: flex;
+  flex-direction: column;
+}
+
+/* right side: avatar card */
+.hero-photo-card {
+  position: relative;
+  padding: 1.6rem 1.5rem 1.5rem;
+  border-radius: 24px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.3), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(45, 212, 191, 0.24), transparent 55%),
+    rgba(15, 23, 42, 0.96);
+  box-shadow:
+    0 20px 50px rgba(15, 23, 42, 0.95),
+    0 0 0 1px rgba(15, 23, 42, 0.9);
+  overflow: hidden;
+}
+
+/* soft glow behind photo */
+.hero-photo-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.2), transparent 60%),
+    radial-gradient(circle at 0% 100%, rgba(34, 197, 94, 0.28), transparent 60%);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+/* actual photo frame */
+.hero-photo-frame {
+  position: relative;
+  z-index: 1;
+  margin-inline: auto;
+  margin-bottom: 1rem;
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  padding: 4px;
+  background:
+    conic-gradient(
+      from 160deg,
+      rgba(56, 189, 248, 0.8),
+      rgba(129, 140, 248, 0.8),
+      rgba(45, 212, 191, 0.9),
+      rgba(56, 189, 248, 0.8)
+    );
+  box-shadow:
+    0 0 30px rgba(56, 189, 248, 0.45),
+    0 0 0 1px rgba(15, 23, 42, 0.95);
+}
+
+/* the img itself */
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  object-fit: cover;
+  display: block;
+  box-shadow:
+    0 16px 35px rgba(15, 23, 42, 0.95),
+    0 0 0 1px rgba(15, 23, 42, 0.9);
+}
+
+/* name + role under photo */
+.hero-photo-meta {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 0.7rem;
+}
+
+.hero-photo-name {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-photo-role {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-top: 0.12rem;
+}
+
+/* small pills row */
+.hero-photo-tags {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+}
+
+.hero-photo-tags span {
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background: rgba(15, 23, 42, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+}
+
 /* responsive hero */
 @media (max-width: 900px) {
   .hero-container {
@@ -255,6 +377,17 @@
 
   .hero-meta-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.8rem;
+  }
+
+  .hero-photo-card {
+    max-width: 320px;
+    margin-inline: auto;
+    order: -1; /* photo on top on tablets */
   }
 }
 
@@ -266,6 +399,11 @@
   .hero-title {
     font-size: 2.2rem;
     line-height: 1.22;
+  }
+
+  .hero-photo-frame {
+    width: 190px;
+    height: 190px;
   }
 }
 

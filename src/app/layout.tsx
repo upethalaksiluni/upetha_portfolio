@@ -9,6 +9,7 @@ import "../styles/animations.css";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import CursorGlow from "../components/layout/CursorGlow"; // 🔹 add this
+import ScrollProgress from "@/components/layout/ScrollProgress";
 
 export const metadata: Metadata = {
   title: "Upetha Laksiluni - Full-Stack Developer & CTO",
@@ -34,6 +35,9 @@ export default function RootLayout({
           <main className="main-content">{children}</main>
           <Footer />
         </div>
+        
+        <ScrollProgress />
+        
       </body>
     </html>
   );

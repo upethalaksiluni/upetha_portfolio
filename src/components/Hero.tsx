@@ -8,6 +8,7 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
+import Image from "next/image";
 
 export default function Hero() {
   const cardRef = useRef<HTMLDivElement | null>(null);
@@ -58,50 +59,94 @@ export default function Hero() {
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
-        <div className="hero-badge-wrapper">
-          <span className="hero-badge">FULL-STACK DEVELOPER AND CTO</span>
-        </div>
+        {/* NEW: split hero into text + photo */}
+        <div className="hero-layout">
+          {/* LEFT: text/content */}
+          <div className="hero-main">
+            <div className="hero-badge-wrapper">
+              <span className="hero-badge">
+                FULL-STACK DEVELOPER AND CTO
+              </span>
+            </div>
 
-        <h1 className="hero-title">Upetha Laksiluni</h1>
+            <h1 className="hero-title">Upetha Laksiluni</h1>
 
-        <p className="hero-subtitle">
-          I design and build web, mobile and cloud-based systems with a focus on
-          clean architecture, usability and production readiness.
-        </p>
+            <p className="hero-subtitle">
+              I design and build web, mobile and cloud-based systems with a
+              focus on clean architecture, usability and production readiness.
+            </p>
 
-        <div className="hero-cta-row">
-          <a href="#projects" className="btn btn-primary">
-            View Projects
-          </a>
-          <a href="#contact" className="btn">
-            Contact Me
-          </a>
-        </div>
+            <div className="hero-cta-row">
+              <a href="#projects" className="btn btn-primary">
+                View Projects
+              </a>
+              <a href="#contact" className="btn">
+                Contact Me
+              </a>
+            </div>
 
-        <div className="hero-meta-grid">
-          <div className="hero-meta-item">
-            <span className="hero-meta-label">Current role:</span>
-            <span className="hero-meta-value">
-              CTO at IterDX Global (PVT) Ltd
-            </span>
+            <div className="hero-meta-grid">
+              <div className="hero-meta-item">
+                <span className="hero-meta-label">Current role:</span>
+                <span className="hero-meta-value">
+                  CTO at IterDX Global (PVT) Ltd
+                </span>
+              </div>
+              <div className="hero-meta-item">
+                <span className="hero-meta-label">Focus:</span>
+                <span className="hero-meta-value">
+                  Full-stack development, cloud foundations, AI and mobile
+                  applications.
+                </span>
+              </div>
+            </div>
+
+            <div className="hero-snapshot-card card">
+              <h3 className="hero-snapshot-title">Quick Snapshot</h3>
+              <ul className="hero-snapshot-list">
+                <li>Based in Colombo, Sri Lanka</li>
+                <li>Industry experience as Full-Stack DevOps Intern</li>
+                <li>
+                  Comfortable with web, mobile, databases and DevOps basics
+                </li>
+                <li>Enjoy mentoring and sharing knowledge</li>
+              </ul>
+            </div>
           </div>
-          <div className="hero-meta-item">
-            <span className="hero-meta-label">Focus:</span>
-            <span className="hero-meta-value">
-              Full-stack development, cloud foundations, AI and mobile
-              applications.
-            </span>
-          </div>
-        </div>
 
-        <div className="hero-snapshot-card card">
-          <h3 className="hero-snapshot-title">Quick Snapshot</h3>
-          <ul className="hero-snapshot-list">
-            <li>Based in Colombo, Sri Lanka</li>
-            <li>Industry experience as Full-Stack DevOps Intern</li>
-            <li>Comfortable with web, mobile, databases and DevOps basics</li>
-            <li>Enjoy mentoring and sharing knowledge</li>
-          </ul>
+          {/* RIGHT: profile photo card */}
+          <motion.div
+            className="hero-photo-card"
+            initial={{ opacity: 0, y: 24, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
+          >
+            <div className="hero-photo-glow" />
+
+            <div className="hero-photo-frame">
+              <Image
+                src="/upetha.png" // put your image in /public
+                alt="Upetha Laksiluni profile photo"
+                width={260}
+                height={260}
+                className="hero-photo"
+                priority
+              />
+            </div>
+
+            <div className="hero-photo-meta">
+              <span className="hero-photo-name">Upetha Laksiluni</span>
+              <span className="hero-photo-role">
+                Full-Stack Developer &amp; CTO
+              </span>
+            </div>
+
+            <div className="hero-photo-tags">
+              <span>Web &amp; Mobile</span>
+              <span>Cloud &amp; DevOps</span>
+              <span>AI Integrations</span>
+            </div>
+          </motion.div>
         </div>
       </motion.div>
     </section>

@@ -209,3 +209,28 @@ button {
   transform: translateY(16px);
   animation: fade-in-up 0.7s var(--transition-med) forwards;
 }
+
+
+.scroll-circle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  font-size: 22px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: conic-gradient(#3b82f6 0deg, #334155 0deg);
+  color: white;
+  cursor: pointer;
+  z-index: 9999;
+  transition: opacity 0.25s ease, transform 0.2s ease;
+}
+
+.scroll-circle:hover {
+  transform: translateY(-2px);
+}
