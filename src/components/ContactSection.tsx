@@ -1,13 +1,17 @@
 ﻿import React from "react";
+import SectionHeader from "./SectionHeader";
+
+
 
 export default function ContactSection() {
   return (
     <section id="contact" className="section fade-in-up">
-      <h2 className="section-title">Contact</h2>
-      <p className="section-subtitle">
-        Open to remote work, freelance projects and collaborations. Feel free to
-        say hello.
-      </p>
+      <SectionHeader
+        eyebrow="Connect"
+        title="Contact"
+        subtitle="Open to remote work, freelance projects and collaborations. Feel free to say hello."
+        tags={["Colombo", "Remote Available", "Let’s Talk"]}
+      />
 
       <div className="contact-grid">
         <div className="card contact-main">
@@ -27,6 +31,9 @@ export default function ContactSection() {
               </a>
             </li>
           </ul>
+          <p style={{ marginTop: "0.75rem", fontSize: "0.85rem" }}>
+            Prefer email or LinkedIn for project enquiries.
+          </p>
         </div>
 
         <div className="card contact-main">

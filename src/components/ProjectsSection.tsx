@@ -1,67 +1,116 @@
 ﻿import React from "react";
+import SectionHeader from "./SectionHeader";
 
-const projects = [
+
+type Project = {
+  title: string;
+  tagline: string;
+  description: string;
+  situation: string;
+  action: string;
+  result: string;
+  techStack: string[];
+  tags: string[];
+};
+
+const projects: Project[] = [
   {
-    name: "The Gallery Cafe - Restaurant Platform",
-    situation: "Restaurant needed digital reservations and menu ordering instead of manual processes.",
-    task: "Design and build a full restaurant platform with bookings, menu, orders and admin views.",
+    title: "The Gallery Cafe – Restaurant Platform",
+    tagline: "End-to-end digital experience for reservations and menu ordering.",
+    description:
+      "Full web platform where guests can browse the menu, reserve tables and place pre-orders while staff manage everything from one dashboard.",
+    situation:
+      "Restaurant needed to move away from manual phone calls and paper-based bookings.",
     action:
-      "Designed database, built authentication, admin dashboard, booking management, and customer ordering with a cart.",
+      "Designed schema, built auth, reservation flows, admin views and customer ordering with a cart and payment hand-off.",
     result:
-      "Simplified reservations and orders, improved visibility for staff and better experience for customers.",
-    stack: "PHP, MySQL, JavaScript, HTML, CSS, Bootstrap",
+      "Reduced booking mistakes, better visibility for staff and a smoother experience for customers.",
+    techStack: ["PHP", "MySQL", "JavaScript", "HTML", "CSS", "Bootstrap"],
+    tags: ["Production", "Reservations", "Admin panel"],
   },
   {
-    name: "Eco Tour - Sustainable Tourism Platform (In progress)",
-    situation: "Travelers wanted an easy way to find eco friendly tours and trips.",
-    task: "Create a modern web platform where users can explore tours and make bookings.",
+    title: "Eco Tour – Sustainable Tourism Platform (In progress)",
+    tagline: "Modern booking website focused on eco-friendly trips.",
+    description:
+      "MVP web app where users can explore tours, check availability and request bookings with clear sustainability information.",
+    situation:
+      "Travellers wanted a simple way to discover eco-friendly travel options.",
     action:
-      "Planned data models, designed React and Next.js pages and started building core booking flows.",
-    result: "MVP is under development for future public release.",
-    stack: "React, Next.js, Node.js, PostgreSQL",
+      "Planned domain models, designed Next.js pages, started implementing tour listing, filters and booking requests.",
+    result:
+      "Initial MVP in progress with a clear path to add payments and admin tools.",
+    techStack: ["React", "Next.js", "Node.js", "PostgreSQL"],
+    tags: ["MVP", "Next.js", "Booking flows"],
   },
   {
-    name: "TechFix - Service and Inventory Application",
-    situation: "Computer shops needed better tracking for parts, stock and supplier orders.",
-    task: "Build a system to manage inventory, pricing and supplier requests.",
+    title: "TechFix – Service & Inventory Application",
+    tagline: "Inventory and service tracking for computer repair shops.",
+    description:
+      "Internal tool to manage devices, parts, pricing and supplier orders so technicians and admins stay aligned.",
+    situation:
+      "Shops were using spreadsheets and memory to track parts and service history.",
     action:
-      "Developed screens for inventory, purchase tracking and supplier details with validation and reporting.",
+      "Designed screens for inventory, purchase tracking, supplier records and basic reporting with validations.",
     result:
-      "Helped reduce stock errors and made daily operations more organized.",
-    stack: "Full-stack web application (stack can be customized per client).",
+      "Better visibility into stock, fewer missing parts and more organized daily work.",
+    techStack: ["Full-stack web app", "REST APIs", "Relational DB"],
+    tags: ["Inventory", "B2B", "Process automation"],
   },
 ];
 
 export default function ProjectsSection() {
   return (
     <section id="projects" className="section fade-in-up">
-      <h2 className="section-title">Projects</h2>
-      <p className="section-subtitle">
-        Selected work with clear situation, task, action and result, showing how I
-        approach real problems.
-      </p>
+      <SectionHeader
+        eyebrow="Work"
+        title="Selected Projects"
+        subtitle="A snapshot of real products, client work and experiments that show how I think and build."
+        tags={["Real Clients", "Team Work", "Side Projects"]}
+      />
 
       <div className="projects-grid">
         {projects.map((project) => (
-          <article key={project.name} className="card project-card">
-            <h3 className="project-title">{project.name}</h3>
-            <ul className="project-star">
-              <li>
-                <strong>Situation:</strong> {project.situation}
-              </li>
-              <li>
-                <strong>Task:</strong> {project.task}
-              </li>
-              <li>
-                <strong>Action:</strong> {project.action}
-              </li>
-              <li>
-                <strong>Result:</strong> {project.result}
-              </li>
-            </ul>
-            <p className="project-stack">
-              <strong>Tech Stack:</strong> {project.stack}
-            </p>
+          <article key={project.title} className="card project-card">
+            <div className="project-card-grid">
+              {/* Image / visual side – gradient placeholder (you can swap to real image later) */}
+              <div className="project-media">
+                <div className="project-media-inner">
+                  <span className="project-media-badge">Case Study</span>
+                  <h3 className="project-media-title">{project.title}</h3>
+                  <p className="project-media-tagline">{project.tagline}</p>
+                </div>
+              </div>
+
+              {/* Text side */}
+              <div className="project-content">
+                <h3 className="project-title">{project.title}</h3>
+                <p className="project-description">{project.description}</p>
+
+                <ul className="project-star">
+                  <li>
+                    <strong>Situation:</strong> {project.situation}
+                  </li>
+                  <li>
+                    <strong>Action:</strong> {project.action}
+                  </li>
+                  <li>
+                    <strong>Result:</strong> {project.result}
+                  </li>
+                </ul>
+
+                <p className="project-stack">
+                  <strong>Tech stack:</strong> {project.techStack.join(" · ")}
+                </p>
+
+                <div className="project-tags">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="project-tag-pill">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </article>
         ))}
       </div>

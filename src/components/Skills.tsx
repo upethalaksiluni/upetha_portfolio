@@ -1,4 +1,5 @@
-﻿import React from "react";
+﻿// src/components/Skills.tsx
+import React from "react";
 import {
   SiReact,
   SiNextdotjs,
@@ -19,12 +20,14 @@ import {
   SiFlutter,
   SiTailwindcss,
 } from "react-icons/si";
+import SectionHeader from "./SectionHeader";
+import { motion } from "motion/react"
 
 type SkillItem = {
   label: string;
   icon?: React.ReactNode;
   highlight?: boolean;
-  color?: string; // brand color for the icon
+  color?: string;
 };
 
 const skillGroups: { title: string; items: SkillItem[] }[] = [
@@ -101,11 +104,12 @@ const skillGroups: { title: string; items: SkillItem[] }[] = [
 export default function Skills() {
   return (
     <section id="skills" className="section fade-in-up">
-      <h2 className="section-title">Technical Skills</h2>
-      <p className="section-subtitle">
-        A practical mix of frontend, backend, mobile, database, DevOps and cloud/AI skills,
-        used in real projects and internships.
-      </p>
+       <SectionHeader
+        eyebrow="Stack"
+        title="Technical Skills"
+        subtitle="A practical mix of frontend, backend, mobile, database, DevOps and cloud/AI skills used in real projects and internships."
+        tags={["Frontend", "Backend", "Cloud & AI"]}
+      />
 
       <div className="skills-grid">
         {skillGroups.map((group) => (
@@ -115,7 +119,6 @@ export default function Skills() {
               <h3 className="skill-title">{group.title}</h3>
             </div>
 
-            {/* marquee wrapper */}
             <div className="skill-marquee-outer">
               <ul className="skill-list skill-list--marquee">
                 {[...group.items, ...group.items].map((item, idx) => (

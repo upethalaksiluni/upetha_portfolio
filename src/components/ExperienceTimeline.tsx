@@ -1,9 +1,12 @@
 ﻿import React from "react";
+import SectionHeader from "./SectionHeader";
+
+
 
 const experiences = [
   {
-    role: "Chief Technology Officer - IterDX Global (PVT) Ltd",
-    period: "Oct 2025 - Present, Sri Lanka",
+    role: "Chief Technology Officer – IterDX Global (PVT) Ltd",
+    period: "Oct 2025 – Present · Sri Lanka",
     points: [
       "Lead and guide technology direction and priorities.",
       "Support teams and keep delivery aligned with business goals.",
@@ -12,12 +15,13 @@ const experiences = [
     ],
   },
   {
-    role: "Software Engineer (Full-Stack DevOps Intern) - Cyber-Intel Cyber Storm Research Academy",
-    period: "Dec 2024 - Jan 2026, Colombo",
+    role:
+      "Software Engineer (Full-Stack DevOps Intern) – Cyber-Intel Cyber Storm Research Academy",
+    period: "Dec 2024 – Jan 2026 · Colombo",
     points: [
       "Built and improved internal web tools and automation flows.",
       "Implemented full stack features using React, Next.js, Node.js and Python.",
-      "Integrated REST APIs and supported CI/CD and Git based workflows.",
+      "Integrated REST APIs and supported CI/CD and Git-based workflows.",
       "Debugged issues across environments and improved user experience.",
     ],
   },
@@ -26,11 +30,12 @@ const experiences = [
 export default function ExperienceTimeline() {
   return (
     <section id="experience" className="section fade-in-up">
-      <h2 className="section-title">Experience</h2>
-      <p className="section-subtitle">
-        Roles that helped me grow as a full-stack engineer, leader and problem
-        solver.
-      </p>
+      <SectionHeader
+        eyebrow="Timeline"
+        title="Experience"
+        subtitle="Roles that helped me grow as a full-stack engineer, leader and problem solver."
+        tags={["CTO", "Internships", "Leadership"]}
+      />
 
       <div className="timeline">
         {experiences.map((exp) => (

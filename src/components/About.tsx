@@ -1,8 +1,18 @@
 ﻿import React from "react";
+import SectionHeader from "./SectionHeader";
+
 
 export default function About() {
   return (
+    
     <section id="about" className="section fade-in-up">
+       <SectionHeader
+        eyebrow="About"
+        title="Who I am"
+        subtitle="Full-stack developer focused on building clean, maintainable web and mobile solutions with real-world impact."
+        tags={["Full-stack", "Problem Solver", "Team Player"]}
+      />
+      
       <h2 className="section-title">About Me</h2>
       <p className="section-subtitle">
         I am a Software Engineering student and Full-Stack Developer with hands-on

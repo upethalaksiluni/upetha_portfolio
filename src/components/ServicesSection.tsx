@@ -1,15 +1,18 @@
 ﻿import React from "react";
+import SectionHeader from "./SectionHeader";
+
+
 
 const services = [
   {
     title: "Full-Stack Web Development",
     description:
-      "Building complete web applications with modern front end and back end stacks.",
+      "Building complete web applications with modern front-end and back-end stacks.",
   },
   {
     title: "Mobile App Development",
     description:
-      "Creating Android and cross platform apps to support your business or product.",
+      "Creating Android and cross-platform apps to support your business or product.",
   },
   {
     title: "UI and UX Design",
@@ -36,11 +39,12 @@ const services = [
 export default function ServicesSection() {
   return (
     <section id="services" className="section fade-in-up">
-      <h2 className="section-title">Services</h2>
-      <p className="section-subtitle">
-        Ways I can help you as a developer, designer, mentor or technology
-        partner.
-      </p>
+      <SectionHeader
+        eyebrow="Services"
+        title="What I Offer"
+        subtitle="From idea to deployment: modern web apps, APIs, dashboards and integrations tailored to your product."
+        tags={["Web Apps", "APIs", "Consulting"]}
+      />
 
       <div className="services-grid">
         {services.map((service) => (
